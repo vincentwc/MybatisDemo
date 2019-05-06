@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.DeptEmpMapper">
+
+    <!--自定义resultMap 实体类和结果集之间的关系-->
+    <resultMap id="dept_emp_result_map" type="DeptEmp">
+        <result property="dname" column="dname"/>
+        <result property="total" column="total"/>
+    </resultMap>
+
+    <select id="getEmpTotalByDept" resultMap="dept_emp_result_map">
+        select dname,count(*) as total from dept,emp where dept.id = emp.did group  by  dname
+    </select>
+</mapper>
